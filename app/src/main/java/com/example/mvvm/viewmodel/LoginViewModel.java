@@ -13,51 +13,54 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 public class LoginViewModel extends ViewModel {
 
-    public MutableLiveData<String> EmailAddress = new MutableLiveData<>();
-    public MutableLiveData<String> Password = new MutableLiveData<>();
-    public Repository loginRepo;
-    private MutableLiveData<User> userMutableLiveData;
-    private MutableLiveData<User> loginResponseModelMutableLiveData;
+    public MutableLiveData<String> PhoneNumber = new MutableLiveData<>();
+    public MutableLiveData<String> Country = new MutableLiveData<>();
+    private MutableLiveData<String> loginResponseModelMutableLiveData;
     Map<String, String> params = new HashMap<>();
+    Repository userRepository;
+
+    @Inject
+    public LoginViewModel(Repository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void checkLogin(User loginRequestModel) {
         loginResponseModelMutableLiveData = Repository.checkLogin(loginRequestModel);
     }
 
-    public MutableLiveData<User> getUser() {
+    /*public MutableLiveData<User> getUser() {
 
         if (userMutableLiveData == null) {
             userMutableLiveData = new MutableLiveData<>();
         }
         return userMutableLiveData;
 
-    }
+    }*/
 
-    public LiveData<User> getUser2() {
+    public LiveData<String> getUser() {
         if (loginResponseModelMutableLiveData == null) {
             loginResponseModelMutableLiveData = new MutableLiveData<>();
-            loginRepo = Repository.getInstance();
         }
 
         return loginResponseModelMutableLiveData;
     }
 
     public void onLoginClick() {
-        User loginRequestModel = new User(EmailAddress.getValue(), Password.getValue());
-        loginRequestModel.setEmail(EmailAddress.getValue());
-        loginRequestModel.setPassword(Password.getValue());
-        params.put("email", loginRequestModel.getEmail());
-        params.put("password", loginRequestModel.getPassword());
+        User loginRequestModel = new User(Country.getValue(), PhoneNumber.getValue());
+        loginRequestModel.setCountryCode(Country.getValue());
+        loginRequestModel.setMobileNumber(PhoneNumber.getValue());
         checkLogin(loginRequestModel);
     }
 
-    public void onClick() {
+    /*public void onClick() {
 
         User loginUser = new User(EmailAddress.getValue(), Password.getValue());
 
         userMutableLiveData.setValue(loginUser);
 
-    }
+    }*/
 }

@@ -17,25 +17,25 @@
 
         <EditText
             android:id="@+id/emailET"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter Email"
-            android:text="@={viewModel.EmailAddress}"
-            android:layout_marginTop="100dp"
+            android:hint="IN"
+            android:text="@={viewModel.Country}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/passwordET"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/passwordET"/>
+            app:layout_constraintBottom_toTopOf="@+id/loginBtn"/>
 
         <EditText
             android:id="@+id/passwordET"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="Enter Password"
-            android:text="@={viewModel.Password}"
-            app:layout_constraintStart_toStartOf="parent"
+
+            android:hint="Enter Number"
+            android:text="@={viewModel.PhoneNumber}"
+            app:layout_constraintStart_toEndOf="@id/emailET"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailET"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/loginBtn"/>
 
         <Button
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LOGIN"
-            android:onClick="@{() -> viewModel.onClick()}"
+            android:onClick="@{() -> viewModel.onLoginClick()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordET"

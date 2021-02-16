@@ -4,38 +4,33 @@ import android.util.Patterns;
 
 public class User {
 
-    private String email;
-    private String password;
+    private String countryCode;
+    private String mobileNumber;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public User(String countryCode, String mobileNumber) {
+        this.countryCode = countryCode;
+        this.mobileNumber = mobileNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getCountryCode() {
+        return countryCode;
     }
 
-
-    public String getEmail() {
-        return email;
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isEmailValid() {
-        return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
 
-    public boolean isPasswordLengthGreaterThan5() {
-        return getPassword().length() > 5;
+
+    public boolean isPhoneNumberEmpty() {
+        return getMobileNumber().length() > 0;
     }
 }
